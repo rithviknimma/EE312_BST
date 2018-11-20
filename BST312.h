@@ -247,7 +247,7 @@ void BST_312 <ItemType>::deleteItem(const ItemType& newItem)
 template<class ItemType>
 void BST_312 <ItemType>::makeEmpty(TreeNode*& t)
 {
-    //YOUR CODE GOES HERE
+    
 }
 
 template<class ItemType>
@@ -286,31 +286,34 @@ template<class ItemType>
 void BST_312 <ItemType>::insertItem(TreeNode*& t, const ItemType& newItem)
 {
     if (t == NULL){  // insert item if no node exists here
-    	TreeNode newNode = new TreeNode;
+    	TreeNode *newNode = new TreeNode;
     	newNode->data = newItem;
     	newNode->left = NULL;
     	newNode->right = NULL;
     	t = newNode;
+//cout << newItem;
     	return;
     }
     else if (newItem < t->data){
-    	if (t->left == NULL){  // insert item if no node exists here
-    		TreeNode newNode = new TreeNode;
+    	if (t->left == NULL){  // insert item if no node exists here and the parent is greater than item
+    		TreeNode *newNode = new TreeNode;
     		newNode->data = newItem;
     		newNode->left = NULL;
     		newNode->right = NULL;
     		t->left = newNode;
+//cout << newItem;
     		return;
     	}
         insertItem(t->left, newItem);
     }
     else if (newItem > t->data){
-    	if (t->right == NULL){  // insert item if no node exists here
-    		TreeNode newNode = new TreeNode;
+    	if (t->right == NULL){  // insert item if no node exists here and the parent is less than item
+    		TreeNode *newNode = new TreeNode;
     		newNode->data = newItem;
     		newNode->left = NULL;
     		newNode->right = NULL;
     		t->right = newNode;
+//cout << newItem;
     		return;
     	}
         insertItem(t->right, newItem);
@@ -328,65 +331,88 @@ void BST_312 <ItemType>::insertItem(const ItemType& newItem)
 template<class ItemType>
 int BST_312 <ItemType>::countNodes(TreeNode* t) const
 {
-    //YOUR CODE GOES HERE
-	return 0;
+    int numNodes = 0;
+    if(t != NULL)
+        numNodes++; // increment if node exists
+    else
+        return 0;
+    numNodes += countNodes(t->left); // count all left subtrees
+    numNodes += countNodes(t->right); // count all right subtrees
+
+    return numNodes;
 }
 
 
 template<class ItemType>
 int BST_312 <ItemType>::countNodes()
 {
-    //YOUR CODE GOES HERE
-    return 0;
+    int numNodes = countNodes(root);
+    return numNodes;
 }
 
 template<class ItemType>
 void BST_312 <ItemType>::preOrderTraversal(TreeNode* t,vector<ItemType>& result) const
 {
-    //YOUR CODE GOES HERE
+    if(t != NULL){
+        result.push_back(t->data);
+    }
+    else
+        return;
+    preOrderTraversal(t->left, result);
+    preOrderTraversal(t->right, result);
 }
 
 
 template<class ItemType>
 vector<ItemType> BST_312 <ItemType>::preOrderTraversal()
 {
-    //YOUR CODE GOES HERE
-    vector<ItemType> pOT;
-
-    return pOT;
+    vector<ItemType> preOrderList;
+    preOrderTraversal(root, preOrderList);
+    return preOrderList;
 
 }
 
 template<class ItemType>
 void BST_312 <ItemType>::inOrderTraversal(TreeNode* t,vector<ItemType>& result) const
 {
-    //YOUR CODE GOES HERE
+    if(t->left != NULL)
+        inOrderTraversal(t->left, result);
+
+    result.push_back(t->data);
+
+    if(t->right != NULL)
+        inOrderTraversal(t->right, result);
 
 }
 
 template<class ItemType>
 vector<ItemType> BST_312 <ItemType>::inOrderTraversal()
 {
-    //YOUR CODE GOES HERE
-    vector<ItemType> pOT;
-
-    return pOT;
+    vector<ItemType> inOrderList;
+    inOrderTraversal(root, inOrderList);
+    return inOrderList;
 }
 
 template<class ItemType>
 void BST_312 <ItemType>::postOrderTraversal(TreeNode* t,vector<ItemType>& result) const
 {
+    if(t->left != NULL)
+        inOrderTraversal(t->left, result);
+    if(t->right != NULL)
+        inOrderTraversal(t->right, result);
 
-    //YOUR CODE GOES HERE
+    result.push_back(t->data);  
+    return;
+    cout << t->data;      
 }
 
 template<class ItemType>
 vector<ItemType> BST_312 <ItemType>::postOrderTraversal()
 {
     //YOUR CODE GOES HERE
-    vector<ItemType> pOT;
-
-    return pOT;
+    vector<ItemType> postOrderList;
+    postOrderTraversal(root, postOrderList);
+    return postOrderList;
 }
 
 template<class ItemType>
