@@ -285,15 +285,42 @@ bool BST_312 <ItemType>::isFull() const
 template<class ItemType>
 void BST_312 <ItemType>::insertItem(TreeNode*& t, const ItemType& newItem)
 {
-
-    //YOUR CODE GOES HERE
-
+    if (t == NULL){  // insert item if no node exists here
+    	TreeNode newNode = new TreeNode;
+    	newNode->data = newItem;
+    	newNode->left = NULL;
+    	newNode->right = NULL;
+    	t = newNode;
+    	return;
+    }
+    else if (newItem < t->data){
+    	if (t->left == NULL){  // insert item if no node exists here
+    		TreeNode newNode = new TreeNode;
+    		newNode->data = newItem;
+    		newNode->left = NULL;
+    		newNode->right = NULL;
+    		t->left = newNode;
+    		return;
+    	}
+        insertItem(t->left, newItem);
+    }
+    else if (newItem > t->data){
+    	if (t->right == NULL){  // insert item if no node exists here
+    		TreeNode newNode = new TreeNode;
+    		newNode->data = newItem;
+    		newNode->left = NULL;
+    		newNode->right = NULL;
+    		t->right = newNode;
+    		return;
+    	}
+        insertItem(t->right, newItem);
+    }
 }
 
 template<class ItemType>
 void BST_312 <ItemType>::insertItem(const ItemType& newItem)
 {
-    //YOUR CODE GOES HERE
+    insertItem(root, newItem);
 }
 
 
@@ -302,7 +329,7 @@ template<class ItemType>
 int BST_312 <ItemType>::countNodes(TreeNode* t) const
 {
     //YOUR CODE GOES HERE
-
+	return 0;
 }
 
 
@@ -310,6 +337,7 @@ template<class ItemType>
 int BST_312 <ItemType>::countNodes()
 {
     //YOUR CODE GOES HERE
+    return 0;
 }
 
 template<class ItemType>
@@ -323,6 +351,9 @@ template<class ItemType>
 vector<ItemType> BST_312 <ItemType>::preOrderTraversal()
 {
     //YOUR CODE GOES HERE
+    vector<ItemType> pOT;
+
+    return pOT;
 
 }
 
@@ -337,6 +368,9 @@ template<class ItemType>
 vector<ItemType> BST_312 <ItemType>::inOrderTraversal()
 {
     //YOUR CODE GOES HERE
+    vector<ItemType> pOT;
+
+    return pOT;
 }
 
 template<class ItemType>
@@ -350,6 +384,9 @@ template<class ItemType>
 vector<ItemType> BST_312 <ItemType>::postOrderTraversal()
 {
     //YOUR CODE GOES HERE
+    vector<ItemType> pOT;
+
+    return pOT;
 }
 
 template<class ItemType>
@@ -357,6 +394,7 @@ bool BST_312 <ItemType>::isItemInTree(const ItemType& item)
 {
 
   //YOUR CODE GOES HERE
+	return false;
 
 }
 #endif
