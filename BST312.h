@@ -4,7 +4,8 @@
 
   a simple implementation of a binary search tree
 
-
+  Name: Rithvik Baddam
+  UT eid: rrb2442
 */
 
 #ifndef BST_312_H
@@ -214,12 +215,10 @@ void BST_312 <ItemType>::deleteNode(TreeNode*& t)
 template<class ItemType>
 void BST_312 <ItemType>::getPredecessor(TreeNode* t, ItemType& data)
 {
-
     while (t->right != NULL)
         t = t->right;
 
     data = t->data;
-
 }
 
 
@@ -357,6 +356,7 @@ int BST_312 <ItemType>::countNodes()
 template<class ItemType>
 void BST_312 <ItemType>::preOrderTraversal(TreeNode* t,vector<ItemType>& result) const
 {
+    // node, left, right
     if(t != NULL){
         result.push_back(t->data);
     }
@@ -379,6 +379,7 @@ vector<ItemType> BST_312 <ItemType>::preOrderTraversal()
 template<class ItemType>
 void BST_312 <ItemType>::inOrderTraversal(TreeNode* t,vector<ItemType>& result) const
 {
+    // left, node, right
     if(t->left != NULL)
         inOrderTraversal(t->left, result);
 
@@ -402,6 +403,7 @@ void BST_312 <ItemType>::postOrderTraversal(TreeNode* t,vector<ItemType>& result
 {
     if(t == NULL)
         return;
+    // Left, right, node
     postOrderTraversal(t->left, result);
     postOrderTraversal(t->right, result);
     result.push_back(t->data);
@@ -423,19 +425,17 @@ bool BST_312 <ItemType>::isItemInTree(const ItemType& item)
 
 template<class ItemType>
 bool BST_312 <ItemType>::isItemInTree(TreeNode* t, const ItemType& newItem){
-    if(t == NULL)
+    if(t == NULL)  // node does not exist if it is null
         return false;
 
-    else if(t->data == newItem)
-        return true;
+    else if(newItem < t->data)
+        return isItemInTree(t->left, newItem);  // check left subtree if item less than node item
 
-    if(t->left != NULL)
-    isItemInTree(t->left, newItem);
+    else if(newItem > t->data)
+        return isItemInTree(t->right, newItem); // check right subtree if item greater than node item
 
-    if(t->right != NULL)
-    isItemInTree(t->right, newItem);
-
-    return false;
+    else
+        return true;  // if a node exists such that it isn't smaller or greater than item, tree contains item
 }
 
 #endif

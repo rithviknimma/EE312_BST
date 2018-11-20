@@ -10,8 +10,6 @@
 #include <fstream>
 #include "BST312.h"
 
-#include "string.h"
-
 using namespace std;
 
 template <typename T>
@@ -26,9 +24,9 @@ int main() {
     ifstream inFile;
     inFile.open("test.txt");
 
-    BST_312<string> bst;
+    BST_312<int> bst;
    
-    string s;
+    int s;
     inFile >> s;
     while (inFile) {;
         cout << "inserting ... " << s << endl;
@@ -52,7 +50,7 @@ int main() {
 
     cout << "Remove items " << endl;
     cout << "number of nodes in tree before delete is " << bst.countNodes() << endl;
-    s = "tree";
+    s = 8;
     bst.deleteItem(s);
     print(bst.postOrderTraversal());
     cout << endl;
@@ -60,13 +58,13 @@ int main() {
     cout << endl;
 
     print(bst.postOrderTraversal());
-    s = "the";
+    s = 5;
     bool test = bst.isItemInTree(s);
     if(test)
         cout << s;
-    
-    // bst.makeEmpty();
-    // cout << "number of nodes in tree after delete is " << bst.countNodes() << endl;
+    else
+        cout << "dont work bro" << endl;
+
     return 0;
 }
 
