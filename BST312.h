@@ -246,6 +246,7 @@ void BST_312 <ItemType>::deleteItem(const ItemType& newItem)
 template<class ItemType>
 void BST_312 <ItemType>::makeEmpty(TreeNode*& t)
 {
+    // post order method used to delete nodes with no children 
     if(t == NULL)
         return;
     makeEmpty(t->left);
@@ -289,36 +290,33 @@ template<class ItemType>
 void BST_312 <ItemType>::insertItem(TreeNode*& t, const ItemType& newItem)
 {
     if (t == NULL){  // insert item if no node exists here
-    	TreeNode *newNode = new TreeNode;
-    	newNode->data = newItem;
-    	newNode->left = NULL;
-    	newNode->right = NULL;
-    	t = newNode;
-//cout << newItem;
-    	return;
+        TreeNode *newNode = new TreeNode;
+        newNode->data = newItem;
+        newNode->left = NULL;
+        newNode->right = NULL;
+        t = newNode;
+        return;
     }
     else if (newItem < t->data){
-    	if (t->left == NULL){  // insert item if no node exists here and the parent is greater than item
-    		TreeNode *newNode = new TreeNode;
-    		newNode->data = newItem;
-    		newNode->left = NULL;
-    		newNode->right = NULL;
-    		t->left = newNode;
-//cout << newItem;
-    		return;
-    	}
+        if (t->left == NULL){  // insert item if no node exists here and the parent is greater than item
+            TreeNode *newNode = new TreeNode;
+            newNode->data = newItem;
+            newNode->left = NULL;
+            newNode->right = NULL;
+            t->left = newNode;
+            return;
+        }
         insertItem(t->left, newItem);
     }
     else if (newItem > t->data){
-    	if (t->right == NULL){  // insert item if no node exists here and the parent is less than item
-    		TreeNode *newNode = new TreeNode;
-    		newNode->data = newItem;
-    		newNode->left = NULL;
-    		newNode->right = NULL;
-    		t->right = newNode;
-//cout << newItem;
-    		return;
-    	}
+        if (t->right == NULL){  // insert item if no node exists here and the parent is less than item
+            TreeNode *newNode = new TreeNode;
+            newNode->data = newItem;
+            newNode->left = NULL;
+            newNode->right = NULL;
+            t->right = newNode;
+            return;
+        }
         insertItem(t->right, newItem);
     }
 }
