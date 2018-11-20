@@ -24,9 +24,9 @@ int main() {
     ifstream inFile;
     inFile.open("test.txt");
 
-    BST_312<int> bst;
+    BST_312<string> bst;
    
-    int s;
+    string s;
     inFile >> s;
     while (inFile) {;
         cout << "inserting ... " << s << endl;
@@ -50,7 +50,7 @@ int main() {
 
     cout << "Remove items " << endl;
     cout << "number of nodes in tree before delete is " << bst.countNodes() << endl;
-    s = 8;
+    s = "f";
     bst.deleteItem(s);
     print(bst.postOrderTraversal());
     cout << endl;
@@ -58,7 +58,7 @@ int main() {
     cout << endl;
 
     print(bst.postOrderTraversal());
-    s = 5;
+    s = "g";
     bool test = bst.isItemInTree(s);
     if(test)
         cout << s;
