@@ -40,37 +40,33 @@ int main() {
     print(bst.postOrderTraversal());
     cout << endl;
 
-    // cout << "preorder traversal is " << endl;
-    // print(bst.preOrderTraversal());
-    // cout << endl;
+// test make empty and the last function
 
-    // cout << "inorder traversal is " << endl;
-    // print(bst.inOrderTraversal());
-    // cout << endl;
+    cout << "preorder traversal is " << endl;
+    print(bst.preOrderTraversal());
+    cout << endl;
 
-    // cout << "Remove items " << endl;
-    // cout << "number of nodes in tree before delete is " << bst.countNodes() << endl;
-    // s = "tree";
-    // bst.deleteItem(s);
-    // print(bst.postOrderTraversal());
-    // cout << endl;
+    cout << "inorder traversal is " << endl;
+    print(bst.inOrderTraversal());
+    cout << endl;
+
+    cout << "Remove items " << endl;
+    cout << "number of nodes in tree before delete is " << bst.countNodes() << endl;
+    s = "tree";
+    bst.deleteItem(s);
+    print(bst.postOrderTraversal());
+    cout << endl;
+    cout << "number of nodes in tree after delete is " << bst.countNodes() << endl;
+    cout << endl;
+
+    print(bst.postOrderTraversal());
+    s = "the";
+    bool test = bst.isItemInTree(s);
+    if(test)
+        cout << s;
+    
+    // bst.makeEmpty();
     // cout << "number of nodes in tree after delete is " << bst.countNodes() << endl;
-    // cout << endl;
-
-    // s ="This";
-    // string s1 = "is";
-    // string s2 = "a";
-    // string s3 = "series";
-    // string s4 = "of";
-    // string s5 = "words";
-    // string s6 = "to";
-    // string s7 = "test";
-    // string s8 = "tree";
-    // if(s8 < s6){
-    //     cout << "yes"<< endl;
-    // }
-    // else
-    //     cout <<"nah bro";
     return 0;
 }
 

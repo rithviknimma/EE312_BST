@@ -139,7 +139,7 @@ private:
     void preOrderTraversal(TreeNode* t,vector<ItemType>& result) const;
     void postOrderTraversal(TreeNode* t,vector<ItemType>& result) const;
     void copyTree(TreeNode*& copy, const TreeNode *originalTree);
-
+    bool isItemInTree(TreeNode* t, const ItemType& newItem);
 };
 
 /*******************************
@@ -247,7 +247,11 @@ void BST_312 <ItemType>::deleteItem(const ItemType& newItem)
 template<class ItemType>
 void BST_312 <ItemType>::makeEmpty(TreeNode*& t)
 {
-    
+    if(t == NULL)
+        return;
+    makeEmpty(t->left);
+    makeEmpty(t->right);
+    delete t;
 }
 
 template<class ItemType>
@@ -396,20 +400,16 @@ vector<ItemType> BST_312 <ItemType>::inOrderTraversal()
 template<class ItemType>
 void BST_312 <ItemType>::postOrderTraversal(TreeNode* t,vector<ItemType>& result) const
 {
-    if(t->left != NULL)
-        inOrderTraversal(t->left, result);
-    if(t->right != NULL)
-        inOrderTraversal(t->right, result);
-
-    result.push_back(t->data);  
-    return;
-    cout << t->data;      
+    if(t == NULL)
+        return;
+    postOrderTraversal(t->left, result);
+    postOrderTraversal(t->right, result);
+    result.push_back(t->data);
 }
 
 template<class ItemType>
 vector<ItemType> BST_312 <ItemType>::postOrderTraversal()
 {
-    //YOUR CODE GOES HERE
     vector<ItemType> postOrderList;
     postOrderTraversal(root, postOrderList);
     return postOrderList;
@@ -418,10 +418,25 @@ vector<ItemType> BST_312 <ItemType>::postOrderTraversal()
 template<class ItemType>
 bool BST_312 <ItemType>::isItemInTree(const ItemType& item)
 {
-
-  //YOUR CODE GOES HERE
-	return false;
-
+    return isItemInTree(root, item);
 }
+
+template<class ItemType>
+bool BST_312 <ItemType>::isItemInTree(TreeNode* t, const ItemType& newItem){
+    if(t == NULL)
+        return false;
+
+    else if(t->data == newItem)
+        return true;
+
+    if(t->left != NULL)
+    isItemInTree(t->left, newItem);
+
+    if(t->right != NULL)
+    isItemInTree(t->right, newItem);
+
+    return false;
+}
+
 #endif
 
